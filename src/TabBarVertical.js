@@ -24,7 +24,6 @@ type IndicatorProps<T> = SceneRendererProps<T> & {
 
 type Props<T> = SceneRendererProps<T> & {
   scrollEnabled?: boolean,
-  allowBorder?: boolean,
   bounces?: boolean,
   pressColor?: string,
   pressOpacity?: number,
@@ -35,7 +34,7 @@ type Props<T> = SceneRendererProps<T> & {
   renderLabel?: (scene: Scene<T>) => React.Node,
   renderIcon?: (scene: Scene<T>) => React.Node,
   renderBadge?: (scene: Scene<T>) => React.Node,
-  c?: (props: IndicatorProps<T>) => React.Node,
+  renderIndicator?: (props: IndicatorProps<T>) => React.Node,
   onTabPress?: (scene: Scene<T>) => mixed,
   tabStyle?: ViewStyleProp, // Be sure to include height!
   indicatorStyle?: ViewStyleProp,
@@ -434,7 +433,7 @@ export default class TabBarVertical<T: *> extends React.Component<
 
               tabStyle.opacity = opacity;
 
-              if (allowBorder) {
+              if (this.props.borderStyle) {
 
                 const borderStyleProps = Object.keys(this.props.borderStyle);
                 let borderWidth = 0;
