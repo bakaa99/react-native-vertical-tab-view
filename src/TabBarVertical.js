@@ -411,7 +411,7 @@ export default class TabBarVertical<T: *> extends React.Component<
             ref={el => (this._scrollView = el && el._component)}
           >
             {routes.map((route, i) => {
-              const outputRange = inputRange.map(
+              let outputRange = inputRange.map(
                 inputIndex => (inputIndex === i ? 1 : 0.7)
               );
               const opacity = Animated.multiply(
@@ -429,7 +429,7 @@ export default class TabBarVertical<T: *> extends React.Component<
                 ? this.props.renderBadge({ route })
                 : null;
 
-              const tabStyle = {};
+              let tabStyle = {};
 
               tabStyle.opacity = opacity;
 
@@ -453,7 +453,7 @@ export default class TabBarVertical<T: *> extends React.Component<
                   })
                 );
                 
-                tabStyle = Object.assign(tabStyle, StyleSheet.flatten(borderStyle))
+                tabStyle = Object.assign(tabStyle, this.props.borderStyle)
                 tabStyle[borderWidthProp] = borderWidth;
               }
 
